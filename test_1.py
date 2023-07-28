@@ -1,3 +1,4 @@
+import re
 # [TODO]: step 1
 # Update the is_log_line function below to skip lines that are not valid log lines.
 # Valid log lines have a timestamp, error type, and message. For example, lines 1, 3,
@@ -5,10 +6,35 @@
 # There's no perfect way to do this: just decide what you think is reasonable to get
 # the test to pass. The only thing you are not allowed to do is filter out log lines
 # based on the exact row numbers you want to remove.
+VALID_ERRORTYPES = ["INFO", "TRACE", "WARNING"]
+
+
 def is_log_line(line):
     """Takes a log line and returns True if it is a valid log line and returns nothing
     if it is not.
     """
+
+    line_segments = list(filter(None, line.split(' ')))
+
+    if len(line_segments) < 4:
+        return None
+
+    # The above is already enough to get challenge 1 to pass, but it's not a very good check
+
+    date_and_time = line_segments[0] + " " + line_segments[1]
+    error_type = line_segments[2]
+    message_beginning = line_segments[3]
+
+    dt_search = re.search("../../.. ..:..:..", date_and_time)
+    if not dt_search:
+        return None
+
+    if error_type not in VALID_ERRORTYPES:
+        return None
+
+    if message_beginning[:2] != ":.":
+        return None
+
     return True
 
 
