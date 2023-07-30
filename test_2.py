@@ -1,3 +1,4 @@
+"""Second stage of MOJ take home assessment"""
 import csv
 
 import requests
@@ -8,8 +9,11 @@ URL = "https://courttribunalfinder.service.gov.uk/search/results.json?postcode="
 
 def call_api(postcode: str) -> list:
     """contacts API and requests data for a specified postcode, returning list of courts"""
-    api_call = requests.get(f"{URL}{postcode}")
-    return api_call.json()
+    try:
+        api_call = requests.get(f"{URL}{postcode}", timeout=20)
+        return api_call.json()
+    except requests.exceptions.Timeout:
+        print("Timed out")
 
 
 def get_csv() -> list:

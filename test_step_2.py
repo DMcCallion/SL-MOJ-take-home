@@ -1,6 +1,4 @@
-import pytest
-
-from challenge_2 import get_desired_court, format_output
+from test_2 import get_desired_court, format_output
 
 # This fake data should ideally be in a conftest file, but I was having issues with that
 fake_court_data = [

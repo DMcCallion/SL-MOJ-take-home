@@ -1,4 +1,4 @@
-from challenge_1 import is_log_line, get_dict
+from test_1 import is_log_line, get_dict
 
 # tests for step 1
 
