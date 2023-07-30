@@ -1,3 +1,5 @@
 venv
 trying_stuff_out.py
 
+__pycache__
+.pytest_cache

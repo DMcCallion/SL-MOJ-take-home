@@ -8,3 +8,7 @@ def sum_current_time(time_str: str) -> int:
     """Expects data in the format HH:MM:SS"""
     list_of_nums = time_str.split(":")
     return sum(list_of_nums)
+
+
+if __name__ == "__main__":
+    print(sum_current_time("12:00:05"))
